@@ -5,7 +5,10 @@
 amuse_modules_installation() 
 {
     modules_to_install=(aarsethzare athena bhtree brutus bse capreole evtwin fastkick fi fractalcluster gadget2 galactics galaxia halogen hermite hop huayno kepler-orbiters kepler mercury mameclot mesa-r15140 mesa-r2208 mesa mikkola mmams mobse mosse petar ph4 phantom phigrape seba secularmultiple simplex smalln sphray sse tests twobody vader)
-    
+    # mesa-r15140 mesa-r2208 mesa - strange
+    # be careful when install it
+    # if what, then you should press Ctrl-C
+
     for module in "${modules_to_install[@]}"; do
         pip install amuse-"$module"
     done
@@ -75,7 +78,8 @@ echo "[Y/n]"
 read ans
 
 if [["$ans" == "Y" || "$ans" == ""]]; then
-    amuse_modules_installation    
+    amuse_modules_installation   
+    pytest --pyargs -v amuse.test.suite 
 fi
 
 echo "Good Luck! Have Fun!"
