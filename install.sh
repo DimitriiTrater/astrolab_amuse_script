@@ -77,7 +77,7 @@ echo "[Y/n]"
 
 read ans
 
-if [["$ans" == "Y" || "$ans" == ""]]; then
+if [[ "$ans" == "Y" ]] || [[ "$ans" == "" ]]; then
     amuse_modules_installation   
     pytest --pyargs -v amuse.test.suite 
 fi
